@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'infor' => 'infor#infor_get'
   get 'singup' => 'signup#signup_get'
   get 'home/home'
   get 'login' => 'login#login_get'
