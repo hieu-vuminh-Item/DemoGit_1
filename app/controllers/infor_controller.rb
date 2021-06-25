@@ -18,6 +18,10 @@ class InforController < ApplicationController
 
   def edit_post
     user = params[:user]
+    if user == "admin"
+      flash[:notice] = "Can't edit default account"
+      redirect_to infor_path
+    end
     @item = Account.where(:username => user).first
     @listrole = Role.all
     @liststatus = Status.all
@@ -37,7 +41,11 @@ class InforController < ApplicationController
     a.role_id = role
     a.status_id = status
     a.save
-    flash[:notice] = "Update sucessful"
-    redirect_to infor_path
+    if status == "2"
+      logout
+    else
+      flash[:notice] = "Update sucessful"
+      redirect_to infor_path
+    end
   end
 end

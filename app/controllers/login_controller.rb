@@ -6,9 +6,12 @@ class LoginController < ApplicationController
   def login_post
     user = params[:user]
     pass = params[:pass]
-    @a = Account.where(:username =>  user, :password => pass).first
+    @a = Account.where(:username =>  user).first
     if @a == nil
       flash[:notice] = "Account doesn't exist"
+      redirect_to login_path
+    elsif @a.password != pass
+      flash[:notice] = "Wrong password"
       redirect_to login_path
     elsif @a.status_id == 2
       flash[:notice] = "Your account was inactive by admin"
