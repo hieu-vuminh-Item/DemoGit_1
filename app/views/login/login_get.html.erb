@@ -3,14 +3,12 @@
 </div>
 <div class="card row">
   <div class="card-body">
-    <form id="login-form" action="/login/login_post" method="post">
-      <div class="col-4 offset-4">
-        Username: <input type="text" name="user" class="form-control">
-      </div>
-      <div class="col-4 offset-4 mt-3">
-        Password: <input type="password" name="pass" class="form-control">
-      </div>
-    </form>
+    <div class="col-4 offset-4">
+      Username: <input id="user" type="text" name="user" class="form-control">
+    </div>
+    <div class="col-4 offset-4 mt-3">
+      Password: <input id="pass" type="password" name="pass" class="form-control">
+    </div>
     <div class="col-4 offset-4 mt-3">
       <%= link_to "Signup", signup_path, class: "btn btn-primary float-start" %>
       <button id="submit-login-form" class="btn btn-primary float-end">Login</button>
@@ -20,10 +18,4 @@
     </div>
   </div>
 </div>
-
-
-<script>
-    $('#submit-login-form').click(function () {
-        $('#login-form').submit();
-    });
-</script>
+<%= javascript_pack_tag "login_ajax" %>
