@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <h1><strong>Info page</strong></h1>
+</div>
+<div class="card row">
+  <div class="card-body">
+    <div class="col-3 offset-4">
+<!--      Username: <%#= @item.username %>-->
+    </div>
+    <div class="col-3 offset-4">
+<!--      Password: <%#= @item.password %>-->
+    </div>
+    <div class="col-3 offset-4">
+<!--      Role: <%#= @item.role %>-->
+    </div>
+    <div class="col-3 offset-4">
+<!--      Status: <%#= @item.status.to_s %>-->
+    </div>
+    <div class="col-3 offset-4">
+      <button class="btn btn-primary mt-3" id="logout">Log out</button>
+      <form id="form-logout" action="/infor/logout" method="post" style="display: none">
+<!--        <input name="user" value="<%#= @item.username %>">-->
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+    $('#logout').click(function () {
+        $('#form-logout').submit();
+    });
+
+    function edit(id) {
+        if (id == "admin") {
+            alert("Can't edit default account");
+        } else {
+            $form = $('<form action="/infor/edit" method="post"></form>');
+            $form.append('<input type="text" name="user" value="' + id + '"/>');
+            $('body').append($form);
+            $form.submit();
+        }
+        // alert("abc");
+    }
+</script>
